@@ -145,16 +145,37 @@
     */
 
       // --- 1. 실습에 필요한 HTML 요소들을 미리 찾아 변수에 할당합니다. ---
-      // 🧑‍💻 여기에 코드를 작성하세요.
+      const windowScrollYDisplay = document.getElementById("window-scroll-y");
+      const boxScrollTopDisplay = document.getElementById("box-scroll-top");
+      const topBtn = document.getElementById("top-btn");
+      const scrollBox = document.getElementById("scroll-box");
 
       // --- 2. `window` 객체에 스크롤 이벤트를 연결합니다. (페이지 전체 스크롤 감지) ---
-      // 🧑‍💻 여기에 코드를 작성하세요.
+      window.addEventListener("scroll", () => {
+        const currentScrollY = window.scrollY;
+        windowScrollYDisplay.textContent = Math.round(currentScrollY);
+
+        // 300px -> TOP
+        if (currentScrollY > 300) {
+          topBtn.classList.add("visible");
+        } else {
+          topBtn.classList.remove("visible");
+        }
+      });
 
       // --- 3. 특정 요소(`scrollBox`)에 스크롤 이벤트를 연결합니다. ---
-      // 🧑‍💻 여기에 코드를 작성하세요.
+      scrollBox.addEventListener("scroll", () => {
+        const currentScrollTop = scrollBox.scrollTop;
+        boxScrollTopDisplay.textContent = Math.round(currentScrollTop);
+      });
 
       // --- 4. 'TOP' 버튼에 클릭 이벤트를 연결합니다. ---
-      // 🧑‍💻 여기에 코드를 작성하세요.
+      topBtn.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
     </script>
   </body>
 </html>
