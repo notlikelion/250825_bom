@@ -152,23 +152,61 @@
 
       // --- 1. 페이지가 로드되면 Location 객체의 정보를 화면에 표시합니다. ---
       // 🧑‍💻 여기에 코드를 작성하세요. (DOMContentLoaded 이벤트를 사용하여 #location-details 목록을 채웁니다.)
+      document.addEventListener("DOMContentLoaded", () => {
+        const detailsList = document.querySelector("#location-details");
+        detailsList.innerHTML = `
+          <li><code>location.href</code> : ${location.href}</li>
+          <li><code>location.protocol</code> : ${location.protocol}</li>
+          <li><code>location.hostname</code> : ${location.hostname}</li>
+          <li><code>location.port</code> : ${location.port}</li>
+          <li><code>location.pathname</code> : ${location.pathname}</li>
+          <li><code>history.length</code> : ${history.length}</li>
+          <p>${Math.random()}</p>
+        `;
+      });
 
       // --- 2. 각 버튼에 클릭 이벤트 리스너를 연결하여 기능을 구현합니다. ---
 
       // [Location] 새로고침 버튼
-      // 🧑‍💻 여기에 코드를 작성하세요.
+      document.querySelector("#reload-btn").addEventListener("click", () => {
+        alert("페이지 새로고침!!!");
+        location.reload();
+      });
 
       // [Location] 네이버로 이동 버튼
-      // 🧑‍💻 여기에 코드를 작성하세요.
+      document.querySelector("#assign-btn").addEventListener("click", () => {
+        if (confirm("네이버로 이동하시겠습니까?")) {
+          location.href = "https://www.naver.com";
+        }
+      });
 
       // [History] 뒤로 가기 버튼
-      // 🧑‍💻 여기에 코드를 작성하세요.
+      document.querySelector("#back-btn").addEventListener("click", () => {
+        if (history.length > 1) {
+          // 1은 자기 자신이니까 2보다 클 때야 이동하게...
+          // 뭔가 앞뒤 히스토리가 있으면...
+          alert("뒤로 가기!!!");
+          history.back();
+        } else {
+          alert("넌 못 지나간다");
+        }
+      });
 
       // [History] 앞으로 가기 버튼
-      // 🧑‍💻 여기에 코드를 작성하세요.
+      document.querySelector("#forward-btn").addEventListener("click", () => {
+        alert("앞으로 가자~");
+        history.forward();
+      });
 
       // [History] 2페이지 뒤로 가기 버튼
-      // 🧑‍💻 여기에 코드를 작성하세요.
+      document.querySelector("#go-btn").addEventListener("click", () => {
+        if (history.length > 2) {
+          alert("뒤로 가기!!! x 2");
+          history.go(-2);
+        } else {
+          alert("넌 못 지나간다");
+        }
+      });
     </script>
   </body>
 </html>
