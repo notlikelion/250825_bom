@@ -251,7 +251,7 @@
 
       // [sessionStorage] 삭제 버튼
       // (sessionRemoveBtn에 'click' 이벤트 리스너 추가)
-      sessionRemoveBtn("click", () => {
+      sessionRemoveBtn.addEventListener("click", () => {
         const key = sessionKeyInput.value;
         if (!key) {
           resultDiv.textContent = "session 삭제할 키를 입력하세요";
