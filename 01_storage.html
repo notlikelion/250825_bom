@@ -222,16 +222,51 @@
       });
 
       // [sessionStorage] 저장 버튼
-      // 🧑‍💻 여기에 코드를 작성하세요. (sessionSetBtn에 'click' 이벤트 리스너 추가)
+      // (sessionSetBtn에 'click' 이벤트 리스너 추가)
+      sessionSetBtn.addEventListener("click", () => {
+        const key = sessionKeyInput.value;
+        const value = sessionValueInput.value;
+        if (!key || !value) {
+          resultDiv.textContent = "session 키와 밸류 모두 입력 필요";
+          return;
+        }
+        sessionStorage.setItem(key, value); // key라는 위치에 value라는 값 넣겠다
+        resultDiv.textContent = `session ${key}: ${value}`;
+      });
 
       // [sessionStorage] 읽기 버튼
-      // 🧑‍💻 여기에 코드를 작성하세요. (sessionGetBtn에 'click' 이벤트 리스너 추가)
+      // (sessionGetBtn에 'click' 이벤트 리스너 추가)
+      sessionGetBtn.addEventListener("click", () => {
+        const key = sessionKeyInput.value;
+        if (!key) {
+          resultDiv.textContent = "session 조회할 키를 입력하세요";
+          return;
+        }
+        const value = sessionStorage.getItem(key);
+        resultDiv.textContent = value
+          ? `session ${key}: ${value}`
+          : `해당 키(${key})에 저장된 데이터가 없습니다!`;
+        sessionValueInput.value = value;
+      });
 
       // [sessionStorage] 삭제 버튼
-      // 🧑‍💻 여기에 코드를 작성하세요. (sessionRemoveBtn에 'click' 이벤트 리스너 추가)
+      // (sessionRemoveBtn에 'click' 이벤트 리스너 추가)
+      sessionRemoveBtn("click", () => {
+        const key = sessionKeyInput.value;
+        if (!key) {
+          resultDiv.textContent = "session 삭제할 키를 입력하세요";
+          return;
+        }
+        const value = sessionStorage.removeItem(key);
+        resultDiv.textContent = `session ${key} 삭제 완료`;
+      });
 
       // [sessionStorage] 전체 삭제 버튼
-      // 🧑‍💻 여기에 코드를 작성하세요. (sessionClearBtn에 'click' 이벤트 리스너 추가)
+      // (sessionClearBtn에 'click' 이벤트 리스너 추가)
+      sessionClearBtn.addEventListener("click", () => {
+        sessionStorage.clear();
+        resultDiv.textContent = `session 전체 삭제 완료`;
+      });
     </script>
   </body>
 </html>
